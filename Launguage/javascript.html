@@ -38,7 +38,7 @@ function saveTextAsFile()
 {      
     var textToWrite = document.getElementById("code").value;
     var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
-    var fileNameToSaveAs = (document.getElementById("name").value + ".js");
+    var fileNameToSaveAs = (document.getElementById("name").value + ".wde");
     var downloadLink = document.createElement("a");
     downloadLink.download = fileNameToSaveAs;
     downloadLink.innerHTML = "My Hidden Link";
