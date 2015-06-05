@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<p>
+  <label for="name"></label>
+  <input type="text" name="name" id="name" />
+</p>
+<button onclick="run();">Run</button>
+  <td><button onclick="saveTextAsFile();">Save Text to File</button>
+    <p>&nbsp;    </p>
+    <p>
+      <textarea name="code" id="code" cols="100" rows="45"></textarea>
+  </p></td>
+</body>
+
+<script>
+function run() {
+    var el = document.getElementById('code');
+    var scriptText = el.value;
+    var oldScript = document.getElementById('scriptContainer');
+    var newScript;
+
+    if (oldScript) {
+      oldScript.parentNode.removeChild(oldScript);
+    }
+
+    newScript = document.createElement('script');
+    newScript.id = 'scriptContainer';
+    newScript.text = el.value;
+    document.body.appendChild(newScript);
+} 
+function saveTextAsFile()
+{      
+    var textToWrite = document.getElementById("code").value;
+    var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
+    var fileNameToSaveAs = (document.getElementById("name").value + ".js");
+    var downloadLink = document.createElement("a");
+    downloadLink.download = fileNameToSaveAs;
+    downloadLink.innerHTML = "My Hidden Link";
+    window.URL = window.URL || window.webkitURL;
+    downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+    downloadLink.onclick = destroyClickedElement;
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+}
+
+function destroyClickedElement(event)
+{
+
+    document.body.removeChild(event.target);
+}
+</script>
+</html>
