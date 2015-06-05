@@ -11,7 +11,8 @@
   <input type="text" name="name" id="name" />
 </p>
 <button onclick="run();">Run</button>
-  <td><button onclick="saveTextAsFile();">Save</button>
+  <button onclick="saveTextAsFile();">Save</button>
+   <button onclick="load();">Load</button>
     <p>&nbsp;    </p>
     <p>
       <textarea name="code" id="code" cols="100" rows="45"></textarea>
@@ -49,7 +50,18 @@ function saveTextAsFile()
     document.body.appendChild(downloadLink);
     downloadLink.click();
 }
-
+function load()
+{
+  var filename = 'temp.htm';
+	     var fso, a, ForReading, sContent;
+	     ForReading = 1;
+	     fso = new ActiveXObject('Scripting.FileSystemObject');
+	     file = fso.OpenTextFile(filename, ForReading, false);
+	     var sContent = '';
+	     while(!file.AtEndOfStream) sContent = sContent + file.readline() + "\\r\";
+     	 file.Close();
+     	 document.getElementById('code').value = sContent;
+}
 function destroyClickedElement(event)
 {
 
