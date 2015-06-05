@@ -10,7 +10,6 @@
   <label for="name"></label>
   <input type="text" name="name" id="name" />
 </p>
-<button onclick="load();">Load</button>
 <button onclick="run();">Run</button>
 <button onclick="saveTextAsFile();">Save</button>
     <p>&nbsp;    </p>
@@ -39,7 +38,7 @@ function saveTextAsFile()
 {      
     var textToWrite = document.getElementById("code").value;
     var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
-    var fileNameToSaveAs = (document.getElementById("name").value + ".wde");
+    var fileNameToSaveAs = (document.getElementById("name").value + ".txt");
     var downloadLink = document.createElement("a");
     downloadLink.download = fileNameToSaveAs;
     downloadLink.innerHTML = "My Hidden Link";
@@ -50,22 +49,8 @@ function saveTextAsFile()
     document.body.appendChild(downloadLink);
     downloadLink.click();
 }
-function load()
-{
-	     alert("hi");
-	     var filename = 'temp.htm';
-	     var fso, a, ForReading, sContent;
-	     ForReading = 1;
-	     fso = new ActiveXObject('Scripting.FileSystemObject');
-	     file = fso.OpenTextFile(filename, ForReading, false);
-	     var sContent = '';
-	     while(!file.AtEndOfStream) sContent = sContent + file.readline() + "\\r\";
-     	 file.Close();
-     	 document.getElementById('code').value = sContent;
-}
 function destroyClickedElement(event)
 {
-
     document.body.removeChild(event.target);
 }
 </script>
